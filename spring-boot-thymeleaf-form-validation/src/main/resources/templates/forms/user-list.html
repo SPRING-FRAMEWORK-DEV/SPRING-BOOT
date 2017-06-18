@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Spring Boot Thymeleaf + Spring Security</title>
+
+<div th:replace="/fragments/header :: header-css" />
+
+</head>
+<body>
+
+	<div th:replace="/fragments/header :: header" />
+
+	<div class="container">
+		<div class="col-sm-3">
+			<div th:replace="fragments/sidebar :: blog-sidebar" />
+		</div>
+		<div class="col-sm-9">
+			<h1>User List</h1>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>UserId</th>
+						<th>Firstname</th>
+						<th>Lastname</th>
+						<th>Email</th>
+						<th>PhoneNo</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tr th:each="user : ${users}">
+					<td th:text="${user.userId}">Text.</td>
+					<td th:text="${user.firstName}">Text .</td>
+					<td th:text="${user.LastName}">Text .</td>
+					<td th:text="${user.email}">Text .</td>
+					<td th:text="${user.phoneNo}">Text .</td>
+					<td><a th:href="@{'view-user-'+${user.userId}}">View</a></td>
+
+				</tr>
+			</table>
+
+		</div>
+	</div>
+	<!-- /.container -->
+
+	<div th:replace="/fragments/footer :: footer" />
+
+</body>
+</html>

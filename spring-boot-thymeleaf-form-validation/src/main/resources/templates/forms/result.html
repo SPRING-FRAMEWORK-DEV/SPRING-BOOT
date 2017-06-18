@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Spring Boot Thymeleaf + Spring Security</title>
+
+<div th:replace="/fragments/header :: header-css" />
+
+</head>
+<body>
+
+	<div th:replace="/fragments/header :: header" />
+
+	<div class="container">
+
+		<div class="row">
+			<div class="col-md-3">
+				<div th:replace="fragments/sidebar :: blog-sidebar" />
+			</div>
+			<div class="col-md-9">
+				<h1>This is a post which you submitted</h1>
+
+				<h4>Title:</h4>
+				<p th:text="${title}" />
+				<h4>Content:</h4>
+				<p th:text="${content}" />
+				
+				
+			</div>
+		</div>
+
+	</div>
+	<!-- /.container -->
+
+	<div th:replace="/fragments/footer :: footer" />
+
+</body>
+</html>
