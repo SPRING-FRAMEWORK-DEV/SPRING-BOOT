@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1" />
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Spring Boot | JPA | Home Page</h1>
+	<a href="load">Load Data</a>
+	<br />
+	<a href="view-all">View All</a>
+	<br />
+	<a href="find-one-1">Find One</a>
+	<br />
+	<a href="/delete-user-1">Delete User</a>
+	<form action="add-user" method="post" th:object="${user}">
+		ID: <input type="text" name="id" /><br /> First Name: <input
+			type="text" th:field="*{firstName}" />
+		<div th:if="${#fields.hasErrors('firstName')}"
+			th:errors="*{firstName}">Title error message</div>
+		<br /> Last Name: <input type="text" name="lastName" />
+		<button type="submit">Save</button>
+	</form>
+</body>
+</html>
