@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- Log message format -->
+		<encoder>
+			<pattern>[%date{dd MMM yyyy;HH:mm:ss.SSS,UTC}] [%thread] [%-5level] [%logger{36},L-%line] -%msg%n
+			</pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="TIME_BASED_FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>../../logs/${spring.profiles.active}/app.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- daily rollover -->
+			<fileNamePattern>../../logs/${spring.profiles.active}/app.%d{yyyy-MM-dd-HH}.log
+			</fileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>[%date{dd MMM yyyy;HH:mm:ss.SSS,UTC}] [%thread] [%-5level] [%logger{36},L-%line] -%msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	
+	<logger name="com.ahlo" level="INFO">
+		<appender-ref ref="TIME_BASED_FILE" />
+		<appender-ref ref="STDOUT"  />
+	</logger>
+	
+	<logger name="org.springframework" level="INFO">
+		<appender-ref ref="STDOUT" />
+	</logger>
+	<!-- Setting the root level of logging to INFO -->
+	<root level="INFO">
+		<appender-ref ref="STDOUT" />
+	</root> 
+</configuration>
